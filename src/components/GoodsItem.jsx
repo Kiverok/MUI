@@ -1,39 +1,50 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import {
+  Grid,
+  Card,
+  CardMedia,
+  Typography,
+  CardContent,
+  CardActions,
+  Button,
+} from "@mui/material";
+import React from "react";
 
 const GoodsItem = (props) => {
-    const { name, price, setOrder } = props;
+  const { name, price, poster, setOrder } = props;
 
-    return (
-        <Grid item xs="12" md="4">
-            <div className='card'>
-                <img
-                    src={`https://via.placeholder.com/300x150.png?text=${name.slice(
-                        0,
-                        12
-                    )}`}
-                    className='card-img-top'
-                    alt={name}
-                />
-                <div className='card-body'>
-                    <h5 className='card-title'>{name}</h5>
-                    <p className='card-text'>Цена: {price} руб.</p>
-                    <button
-                        className='btn btn-primary'
-                        onClick={() =>
-                            setOrder({
-                                id: props.id,
-                                name: props.name,
-                                price: props.price,
-                            })
-                        }
-                    >
-                        Купить
-                    </button>
-                </div>
-            </div>
-        </Grid>
-    );
+  return (
+    <Grid item xs={12} md={4}>
+      <Card>
+        <CardMedia
+          image={poster}
+          alt={name}
+          component="img"
+          title={name}
+          sx={{ height: 140 }}
+        />
+        <CardContent>
+          <Typography variant="h6" component="h3">
+            {name}
+          </Typography>
+          <Typography variant="body1">Ціна: {price} грн.</Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+          variant="text"
+            onClick={() =>
+              setOrder({
+                id: props.id,
+                name: props.name,
+                price: props.price,
+              })
+            }
+            >
+            Купити
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  );
 };
 
 export default GoodsItem;
